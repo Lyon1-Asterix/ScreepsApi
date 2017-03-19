@@ -22,16 +22,24 @@ public:
     bool m_initialized;
 };
 
+class CodeBranch
+{
+public:
+    CodeBranch ();
+    void FromJSON ( nlohmann::json data );
+    void ToJSON ( nlohmann::json& data );
+    std::string m_branch;
+    std::map < std::string, CodeModule > m_modules;
+    bool m_initialized;
+};
+
 class Code
 {
 public:
     Code ();
     void FromJSON ( nlohmann::json data );
     void ToJSON ( nlohmann::json& data );
-    void Save ( std::string directory );
-    void Load ( std::string directory );
-    std::string m_branch;
-    std::map < std::string, CodeModule > m_modules;
+    std::map < std::string, CodeBranch > m_branches;
     bool m_initialized;
 };
 

@@ -12,12 +12,6 @@ class Client : public Node
 {
 public:
     Client(Api* pApi);
-    /*virtual bool Connect ( std::string ticket, bool native ) = 0;
-    virtual bool Signin ( std::string email, std::string password ) = 0;
-    virtual bool PullCode ( std::string branch ) = 0;
-    virtual bool PushCode ( std::string branch ) = 0;
-    virtual bool Console ( std::string command ) = 0;
-    virtual bool Room ( std::string name ) = 0;*/
 protected:
     Reply encapsulate (Web::Reply response);
     virtual Reply post ( const std::string& url, std::string content, Web::Header header = Web::Header () );
