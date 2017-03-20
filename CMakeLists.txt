@@ -31,8 +31,7 @@ file(
 include_directories("${PROJECT_INCLUDE_DIR}")
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SRCS})
-
-if(NOT DISABLE_json)
+if(TARGET nlohmann_json)
 add_dependencies(${PROJECT_NAME} nlohmann_json)
 endif ()
 
