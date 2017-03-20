@@ -33,7 +33,7 @@ if(NOT DISABLE_json)
 add_dependencies(${PROJECT_NAME} nlohmannjson)
 endif ()
 
-INSTALL(TARGETS ExecutableTarget StaticLibraryTarget SharedLibraryTarget
+INSTALL(TARGETS ${PROJECT_NAME}
   RUNTIME DESTINATION bin
   LIBRARY DESTINATION lib
   ARCHIVE DESTINATION lib
