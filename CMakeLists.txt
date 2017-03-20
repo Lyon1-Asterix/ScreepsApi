@@ -10,7 +10,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 option(DISABLE_json "bla bla bla ... nlhomann/json" OFF)
 
-//add_subdirectory(external)
+#//add_subdirectory(external)
 include(ExternalProject)
 
 macro ( FindOrCloneExternal name repository args varprefix )
