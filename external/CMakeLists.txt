@@ -16,7 +16,6 @@ macro ( FindOrCloneExternal name repository args varprefix )
             GIT_REPOSITORY ${repository}
             GIT_TAG "master"
             SOURCE_DIR "${CMAKE_SOURCE_DIR}/external/${name}"
-            UPDATE_COMMAND ""
             CMAKE_ARGS ${args}  -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}
         )
         set(${varprefix}_INCLUDE_DIR "${CMAKE_BINARY_DIR}/include" PARENT_SCOPE)
