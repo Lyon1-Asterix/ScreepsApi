@@ -24,4 +24,4 @@ macro ( FindOrCloneExternal name repository args varprefix )
     endif ()
 endmacro ()
 
-FindOrCloneExternal ( nlohmann_json https://github.com/nlohmann/json "-DBuildTests=OFF" JSON )
+FindOrCloneExternal ( nlohmann_json https://github.com/Lyon1-Asterix/json "-DBuildTests=OFF" JSON )
