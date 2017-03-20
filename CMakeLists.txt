@@ -16,13 +16,16 @@ include_directories(${Json_INCLUDE_DIRS})
 set (PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set (PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
  
-set(PROJECT_SRCS 
-    #
-    ${PROJECT_SOURCE_DIR}/Node.cpp
-    ${PROJECT_SOURCE_DIR}/Module.cpp
-    ${PROJECT_SOURCE_DIR}/Client.cpp
-    ${PROJECT_SOURCE_DIR}/Api.cpp
-    ${PROJECT_SOURCE_DIR}/ApiManager.cpp
+file(
+        GLOB_RECURSE
+        PROJECT_SRCS
+        ${PROJECT_SOURCE_DIR}/*
+)
+
+file(
+        GLOB_RECURSE
+        PROJECT_PUBLIC_HEADERS
+        ${PROJECT_INCLUDE_DIR}/*
 )
 
 include_directories("${PROJECT_BINARY_DIR}")
@@ -34,8 +37,12 @@ if(NOT DISABLE_json)
 add_dependencies(${PROJECT_NAME} nlohmannjson)
 endif ()
 
-INSTALL(TARGETS ${PROJECT_NAME}
-  RUNTIME DESTINATION bin
-  LIBRARY DESTINATION lib
-  ARCHIVE DESTINATION lib
-)
+#INSTALL(TARGETS ${PROJECT_NAME}
+#  RUNTIME DESTINATION bin
+#  LIBRARY DESTINATION lib
+#  ARCHIVE DESTINATION lib
+#)
+
+install(FILES ${PROJECT_PUBLIC_HEADERS} DESTINATION include/${PROJECT_NAME})
+install(TARGETS ${PROJECT_NAME} DESTINATION lib)
+install(FILES cmake/${PROJECT_NAME}-Config.cmake DESTINATION lib/cmake)
