@@ -45,4 +45,4 @@ endif ()
 
 install(FILES ${PROJECT_PUBLIC_HEADERS} DESTINATION include/${PROJECT_NAME})
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
-install(FILES cmake/${PROJECT_NAME}-Config.cmake DESTINATION lib/cmake)
+install(FILES cmake/${PROJECT_NAME}-Config.cmake DESTINATION cmake)
