@@ -1,13 +1,40 @@
 # ScreepsApi
 Api Abstraction for Screeps private servers
 
+## ToDo
+
+- [x] Node.js router mapping
+- [ ] Node.js websocket mapping
+- [ ] Api abstraction based on official client protocol
+  - [x] signin (modauth)
+  - [x] code branch pulling
+  - [x] code branch pushing
+  - [x] console sandbox
+  - [x] partial room data
+  - [ ] retrieve complete user data
+  - [ ] retrieve complete world data
+  - [ ] retrieve complete room data
+- [x] Api manager
+- [ ] client subscription and server push manager
+- [x] Low level http access
+- [ ] Low level ws access
+
 ## Class description
+
+### Web abstraction
+
+### Routes and Replies
+
+### Node.js routers mapping
 
 The Node class is the base class to map access to javascript routers and should not be used as a base class.
 
 Client class defines the base routing protocol (for the root namespace of the server).
 It provides low level access to http requests (Post and Get).
 Module class defines nth level namespace based routing protocols.
+
+### Api abstraction
+
 Api class defines the global access to Screeps Api. It used a WebClient to connect to the server and defines various data access methods.
 
 ## Writing implementation for protocol
