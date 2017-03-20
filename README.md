@@ -24,7 +24,7 @@ Api Abstraction for Screeps private servers
 ### Web abstraction
 
 Api mapping is based on the fact that you provide http client for low level access to the server.
-Api is based on the use of an abstraction of these access (defined in [web.hpp](include/ScreepsApi/web.hpp)).
+Api is based on the use of an abstraction of these access (defined in [web.hpp](../../include/ScreepsApi/web.hpp)).
 
 ### Routes and Replies
 
