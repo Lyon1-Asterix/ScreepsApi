@@ -5,7 +5,7 @@
 
 #include "ScreepsApi/Web.hpp"
 
-#include "nlohmann/json.hpp"
+#include "json.hpp"
 
 namespace ScreepsApi {
 
