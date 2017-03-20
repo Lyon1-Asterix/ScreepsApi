@@ -8,7 +8,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
+option(DISABLE_json "bla bla bla ... nlhomann/json" OFF)
+
 add_subdirectory(external)
+message( STATUS "json in ${JSON_INCLUDE_DIR}")
 include_directories(${JSON_INCLUDE_DIR})
 
 set (PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
