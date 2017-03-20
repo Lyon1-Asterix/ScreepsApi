@@ -1,7 +1,4 @@
-
 include(ExternalProject)
-
-message ( STATUS "in external" )
 
 if(NOT DISABLE_json)
 include(ExternalProject)
