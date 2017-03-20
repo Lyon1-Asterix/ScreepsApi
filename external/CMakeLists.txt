@@ -1,7 +1,7 @@
 include(ExternalProject)
 
-if(NOT DISABLE_json)
-    find_package ( nlohmann_json QUIET
+macro ( FindOrCloneExternal name repository args varprefix )
+    find_package ( ${name} QUIET
         NO_DEFAULT_PATH
         NO_CMAKE_ENVIRONMENT_PATH
         NO_CMAKE_PATH
@@ -11,13 +11,18 @@ if(NOT DISABLE_json)
         NO_CMAKE_SYSTEM_PATH
         NO_CMAKE_SYSTEM_PACKAGE_REGISTRY
     )
-    if (NOT nlohmann_json_FOUND)
-        ExternalProject_Add(nlohmann_json
-            GIT_REPOSITORY https://github.com/nlohmann/json
+    if (NOT ${name}_FOUND)
+        ExternalProject_Add(${name}
+            GIT_REPOSITORY ${repository}
             GIT_TAG "master"
-            SOURCE_DIR "${CMAKE_SOURCE_DIR}/external/nlohmann_json"
-            CMAKE_ARGS -DBuildTests=OFF  -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}
+            SOURCE_DIR "${CMAKE_SOURCE_DIR}/external/${name}"
+            UPDATE_COMMAND ""
+            CMAKE_ARGS ${args}  -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}
         )
-        set(JSON_INCLUDE_DIR "${CMAKE_BINARY_DIR}/include" PARENT_SCOPE)
+        set(${varprefix}_INCLUDE_DIR "${CMAKE_BINARY_DIR}/include" PARENT_SCOPE)
+        set(${varprefix}_LIBRARY_DIR "${CMAKE_BINARY_DIR}/lib" PARENT_SCOPE)
+        set(${varprefix}_LIBRARIES "${CMAKE_SHARED_LIBRARY_PREFIX}${varprefix}${CMAKE_SHARED_LIBRARY_SUFFIX}" PARENT_SCOPE)
     endif ()
-endif()
+endmacro ()
+
+FindOrCloneExternal ( nlohmann_json https://github.com/nlohmann/json "-DBuildTests=OFF" JSON )
