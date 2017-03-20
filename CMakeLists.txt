@@ -29,4 +29,6 @@ include_directories("${PROJECT_BINARY_DIR}")
 include_directories("${PROJECT_INCLUDE_DIR}")
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SRCS})
+if(NOT DISABLE_json)
 add_dependencies(${PROJECT_NAME} nlohmannjson)
+endif ()
