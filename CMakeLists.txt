@@ -32,3 +32,9 @@ add_library(${PROJECT_NAME} SHARED ${PROJECT_SRCS})
 if(NOT DISABLE_json)
 add_dependencies(${PROJECT_NAME} nlohmannjson)
 endif ()
+
+INSTALL(TARGETS ExecutableTarget StaticLibraryTarget SharedLibraryTarget
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib
+)
