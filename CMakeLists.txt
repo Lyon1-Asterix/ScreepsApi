@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.3)
 
 project (ScreepsApi)
 
@@ -8,8 +8,10 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
-# JSON
-include_directories(external/json/src)
+option(DISABLE_json "bla bla bla ... nlhomann/json" OFF)
+
+add_subdirectory(external)
+include_directories(${Json_INCLUDE_DIRS})
 
 set (PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set (PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -27,3 +29,4 @@ include_directories("${PROJECT_BINARY_DIR}")
 include_directories("${PROJECT_INCLUDE_DIR}")
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SRCS})
+add_dependencies(${PROJECT_NAME} nlohmannjson)
