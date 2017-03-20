@@ -1,6 +1,17 @@
 # ScreepsApi
 Api Abstraction for Screeps private servers
 
+## Introduction
+
+### Design Goal
+
+Our goal is to define a C++11 abstraction of the web Api of [Screeps](http://www.screeps.com) game.
+This abstraction is designed to be used with private servers using modauth for authentication.
+
+### Usage and dependencies
+
+### Integration
+
 ## ToDo
 
 - [x] Node.js router mapping
@@ -10,6 +21,7 @@ Api Abstraction for Screeps private servers
   - [x] code branch pulling
   - [x] code branch pushing
   - [x] console sandbox
+  - [x] partial user data
   - [x] partial room data
   - [ ] retrieve complete user data
   - [ ] retrieve complete world data
@@ -24,7 +36,7 @@ Api Abstraction for Screeps private servers
 ### Web abstraction
 
 Api mapping is based on the fact that you provide http client for low level access to the server.
-Api is based on the use of an abstraction of these access (defined in [web.hpp](../../include/ScreepsApi/web.hpp)).
+Api is based on the use of an abstraction of these access (defined in [web.hpp](https://github.com/Lyon1-Asterix/ScreepsApi/blob/master/include/ScreepsApi/Web.hpp)).
 
 ### Routes and Replies
 
