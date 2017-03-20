@@ -18,11 +18,10 @@ macro ( FindOrCloneExternal name repository args varprefix )
             SOURCE_DIR "${CMAKE_SOURCE_DIR}/external/${name}"
             CMAKE_ARGS ${args}  -DCMAKE_INSTALL_PREFIX=${CMAKE_BINARY_DIR}
         )
-        set(${varprefix}_INCLUDE_DIR "${CMAKE_BINARY_DIR}/include" PARENT_SCOPE)
-        set(${varprefix}_LIBRARY_DIR "${CMAKE_BINARY_DIR}/lib" PARENT_SCOPE)
-        set(${varprefix}_LIBRARIES "${CMAKE_SHARED_LIBRARY_PREFIX}${varprefix}${CMAKE_SHARED_LIBRARY_SUFFIX}" PARENT_SCOPE)
+        set(${varprefix}_INCLUDE_DIR "${CMAKE_BINARY_DIR}/include")
+        set(${varprefix}_LIBRARY_DIR "${CMAKE_BINARY_DIR}/lib")
+        set(${varprefix}_LIBRARIES "${CMAKE_SHARED_LIBRARY_PREFIX}${varprefix}${CMAKE_SHARED_LIBRARY_SUFFIX}")
     endif ()
-    message ( STATUS "${${varprefix}_INCLUDE_DIR}")
 endmacro ()
 
 FindOrCloneExternal ( nlohmann_json https://github.com/Lyon1-Asterix/json "-DBuildTests=OFF" JSON )
