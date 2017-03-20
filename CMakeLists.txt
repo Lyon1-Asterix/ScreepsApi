@@ -11,7 +11,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 option(DISABLE_json "bla bla bla ... nlhomann/json" OFF)
 
 add_subdirectory(external)
-include_directories(${Json_INCLUDE_DIRS})
+include_directories(${JSON_INCLUDE_DIR})
 
 set (PROJECT_INCLUDE_DIR ${PROJECT_SOURCE_DIR}/include)
 set (PROJECT_SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
@@ -28,20 +28,13 @@ file(
         ${PROJECT_INCLUDE_DIR}/*
 )
 
-include_directories("${PROJECT_BINARY_DIR}")
 include_directories("${PROJECT_INCLUDE_DIR}")
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SRCS})
 
 if(NOT DISABLE_json)
-add_dependencies(${PROJECT_NAME} nlohmannjson)
+add_dependencies(${PROJECT_NAME} nlohmann_json)
 endif ()
-
-#INSTALL(TARGETS ${PROJECT_NAME}
-#  RUNTIME DESTINATION bin
-#  LIBRARY DESTINATION lib
-#  ARCHIVE DESTINATION lib
-#)
 
 install(FILES ${PROJECT_PUBLIC_HEADERS} DESTINATION include/${PROJECT_NAME})
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
