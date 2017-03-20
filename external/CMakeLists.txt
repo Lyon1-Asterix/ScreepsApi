@@ -22,6 +22,7 @@ macro ( FindOrCloneExternal name repository args varprefix )
         set(${varprefix}_LIBRARY_DIR "${CMAKE_BINARY_DIR}/lib" PARENT_SCOPE)
         set(${varprefix}_LIBRARIES "${CMAKE_SHARED_LIBRARY_PREFIX}${varprefix}${CMAKE_SHARED_LIBRARY_SUFFIX}" PARENT_SCOPE)
     endif ()
+    message ( STATUS "${${varprefix}_INCLUDE_DIR}")
 endmacro ()
 
 FindOrCloneExternal ( nlohmann_json https://github.com/Lyon1-Asterix/json "-DBuildTests=OFF" JSON )
