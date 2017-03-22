@@ -14,6 +14,7 @@ public:
     virtual bool PushCode ( std::string branch ) = 0;
     virtual bool Console ( std::string command ) = 0;
     virtual bool Room ( std::string name ) = 0;
+    virtual bool AddSpawn ( std::string name, std::string x, std::string y ) = 0;
 protected:
     std::shared_ptr<Web::Client> m_pClient;
     std::string m_tokenAuth;
