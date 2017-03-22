@@ -29,12 +29,10 @@ file(
         ${PROJECT_INCLUDE_DIR}/*
 )
 
+include_directories("${CMAKE_INSTALL_PREFIX}/include")
 include_directories("${PROJECT_INCLUDE_DIR}")
 
 add_library(${PROJECT_NAME} SHARED ${PROJECT_SRCS})
-if(TARGET nlohmann_json)
-add_dependencies(${PROJECT_NAME} nlohmann_json)
-endif ()
 
 install(FILES ${PROJECT_PUBLIC_HEADERS} DESTINATION include/${PROJECT_NAME})
 install(TARGETS ${PROJECT_NAME} DESTINATION lib)
