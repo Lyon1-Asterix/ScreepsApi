@@ -47,6 +47,8 @@ public:
 class Socket
 {
 public:
+    virtual void connect () = 0;
+    virtual void close() = 0;
     virtual Reply send ( std::string message );
     virtual void subscribe ( std::string message, std::function<void(Reply)> callback );
 };
