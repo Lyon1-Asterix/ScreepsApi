@@ -49,9 +49,9 @@ class Socket
 public:
     virtual void connect () = 0;
     virtual void close() = 0;
-    virtual Reply send ( std::string message ) = 0;
-    virtual void subscribe ( std::string message, std::function<void(Reply)> callback ) = 0;
-    virtual void unsubscribe ( std::string message, std::function<void(Reply)> callback ) = 0;
+    virtual void send ( std::string message ) = 0;
+    virtual void subscribe ( std::string message, std::function<void(std::string)> callback ) = 0;
+    virtual void unsubscribe ( std::string message ) = 0;
 };
 
 }
