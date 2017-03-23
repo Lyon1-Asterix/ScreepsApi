@@ -42,6 +42,13 @@ public:
     virtual Reply request ( RoutingMethod method, std::string uri, std::string content = "", Header header = Header () ) = 0;
 };
 
+class Socket
+{
+public:
+    virtual Reply send ( std::string message );
+    virtual void subscribe ( std::string message, std::function<void(Reply)> callback );
+};
+
 }
 
 }

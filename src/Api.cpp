@@ -2,8 +2,9 @@
 
 namespace ScreepsApi {
 
-Api::Api(std::shared_ptr<Web::Client> pClient) :
-    m_pClient ( pClient )
+Api::Api(std::shared_ptr<Web::Client> pClient,std::shared_ptr<Web::Socket> pSocket) :
+    m_pClient ( pClient ),
+    m_pSocket ( pSocket )
 {
 }
 

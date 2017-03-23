@@ -11,7 +11,7 @@ ApiManager& ApiManager::Instance ()
     return *m_instance;
 }
 
-void ApiManager::initialize ( std::shared_ptr < Web::Client > client )
+void ApiManager::initialize ( std::shared_ptr < Web::Client > client,std::shared_ptr<Web::Socket> socket)
 {
     m_webclient = NULL;
     m_version = -1;
@@ -21,12 +21,13 @@ void ApiManager::initialize ( std::shared_ptr < Web::Client > client )
     if ( out["ok"].get<int>() != 1 ) return;
     m_version = out["protocol"].get<int> ();
     m_webclient = client;
+    m_socclient = socket;
 }
 
 std::shared_ptr < Api > ApiManager::getApi ()
 {
     std::clog << "Create Api client for protocol " << m_version << std::endl;
-    return m_apiImplementations [ m_version ] ( m_webclient );
+    return m_apiImplementations [ m_version ] ( m_webclient, m_socclient );
 }
 
 void ApiManager::registerCreator ( int v, Creator c )
