@@ -20,6 +20,7 @@ void ApiManager::initialize ( std::shared_ptr < Web::Client > client,std::shared
     nlohmann::json out = nlohmann::json::parse ( reply.content () );
     if ( out.find ( "ok" ) == out.end () ) return;
     if ( out["ok"].get<int>() != 1 ) return;
+    socket->connect ();
     m_version = out["protocol"].get<int> ();
     m_webclient = client;
     m_socclient = socket;
