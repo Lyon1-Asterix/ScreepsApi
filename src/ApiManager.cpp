@@ -35,9 +35,12 @@ void ApiManager::initialize ( std::shared_ptr < Web::Client > client,std::shared
     if ( out["ok"].get<int>() != 1 ) return;
     m_webclient = client;
     m_socclient = socket;
-    m_socclient->subscribe ( "time", std::bind ( &ApiManager::socketTimeCB, this, std::placeholders::_1 ) );
-    m_socclient->connect ();
-    while ( ! socketConnected ) std::this_thread::sleep_for ( std::chrono::milliseconds ( 5 ) );
+    if ( m_socclient )
+    {
+        m_socclient->subscribe ( "time", std::bind ( &ApiManager::socketTimeCB, this, std::placeholders::_1 ) );
+        m_socclient->connect ();
+        while ( ! socketConnected ) std::this_thread::sleep_for ( std::chrono::milliseconds ( 5 ) );
+    }
     m_version = out["protocol"].get<int> ();
 }
 
