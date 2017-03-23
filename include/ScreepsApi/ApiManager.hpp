@@ -19,9 +19,12 @@ public:
     void registerCreator ( int v, Creator c );
 protected:
     ApiManager ();
+    void socketProtocolCB ( std::string m );
+    void socketTimeCB ( std::string m );
     std::map < int, Creator > m_apiImplementations;
     std::shared_ptr < Web::Client > m_webclient;
     std::shared_ptr < Web::Socket > m_socclient;
+    bool socketConnected;
     int m_version;
     static ApiManager* m_instance;
 };
