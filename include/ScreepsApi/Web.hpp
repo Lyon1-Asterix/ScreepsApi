@@ -39,6 +39,8 @@ public:
 class Client
 {
 public:
+    virtual void connect () = 0;
+    virtual void close() = 0;
     virtual Reply request ( RoutingMethod method, std::string uri, std::string content = "", Header header = Header () ) = 0;
 };
 

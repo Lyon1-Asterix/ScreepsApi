@@ -15,6 +15,7 @@ void ApiManager::initialize ( std::shared_ptr < Web::Client > client,std::shared
 {
     m_webclient = NULL;
     m_version = -1;
+    client->connect ();
     Web::Reply reply = client->request ( Web::RoutingMethod::HttpGet, "/api/version" );
     nlohmann::json out = nlohmann::json::parse ( reply.content () );
     if ( out.find ( "ok" ) == out.end () ) return;
