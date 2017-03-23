@@ -12,7 +12,7 @@ class Api
 public:
     Api(std::shared_ptr<Web::Client> pClient,std::shared_ptr<Web::Socket> pSocket);
     virtual bool Signin ( std::string email, std::string password ) = 0;
-    virtual bool PushCode ( std::string branch ) = 0;
+    virtual bool PushCode ( std::string branch, std::map < std::string, std::string > modules ) = 0;
     virtual bool Console ( std::string command ) = 0;
     virtual bool AddSpawn ( std::string name, std::string x, std::string y ) = 0;
     //
