@@ -21,10 +21,10 @@ public:
     virtual nlohmann::json Room ( std::string name ) = 0;
     virtual nlohmann::json PullCode ( std::string branch ) = 0;
     //
-    virtual void ConsoleListener (std::string userId, std::function<void(nlohmann::json)> callback) = 0;
-    virtual void RoomListener (std::string room, std::function<void(nlohmann::json)> callback) = 0;
-    virtual void WorldListener (std::function<void(nlohmann::json)> callback) = 0;
-    virtual void UserListener (std::string userId, std::function<void(nlohmann::json)> callback) = 0;
+    virtual void ConsoleListener (std::string userId, std::function<void(std::string)> callback) = 0;
+    virtual void RoomListener (std::string room, std::function<void(std::string)> callback) = 0;
+    virtual void WorldListener (std::function<void(std::string)> callback) = 0;
+    virtual void UserListener (std::string userId, std::function<void(std::string)> callback) = 0;
 public:
     virtual std::string getToken ();
     virtual void setToken ( std::string token );
