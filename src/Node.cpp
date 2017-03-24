@@ -57,4 +57,35 @@ Reply Node::route ( std::string name, std::string content, Web::RoutingMethod me
     return Reply ();
 }
 
+Reply Node::route ( std::string name, nlohmann::json content, nlohmann::json query, Web::RoutingMethod method )
+{
+    if ( m_routes.find ( name ) != m_routes.end () )
+    {
+        Route& route = m_routes [ name ];
+        RouteData called;
+        if ( method == Web::RoutingMethod::Default ) {
+            if ( route.get.m_method != Web::RoutingMethod::Default ) called = route.get;
+            else if ( route.post.m_method != Web::RoutingMethod::Default ) called = route.post;
+        }
+        else if ( method == Web::RoutingMethod::HttpGet && route.get.m_method != Web::RoutingMethod::Default ) called = route.get;
+        else if ( method == Web::RoutingMethod::HttpPost && route.post.m_method != Web::RoutingMethod::Default ) called = route.post;
+        Web::Header header;
+        Reply reply;
+        if ( called.m_tokenAuth ) {
+            header.set ( "X-Token", m_pApi->getToken () );
+            header.set ( "X-Username", m_pApi->getToken () );
+        }
+        if ( called.m_method == Web::RoutingMethod::HttpPost ) {
+            reply = post ( called.m_name, content, query, header );
+        } else {
+            reply = get ( called.m_name, content, query, header );
+        }
+        if ( called.m_tokenAuth ) {
+            m_pApi->setToken ( reply.m_response.header ().get("X-Token") );
+        }
+        return reply;
+    }
+    return Reply ();
+}
+
 }

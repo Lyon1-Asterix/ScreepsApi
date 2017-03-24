@@ -27,4 +27,14 @@ Reply Module::get ( const std::string& url, Web::Header header )
     return m_pParent->get ( m_prefix + "/" + url, header );
 }
 
+Reply Module::post ( const std::string& url, nlohmann::json content, nlohmann::json query, Web::Header header )
+{
+    return m_pParent->post ( m_prefix + "/" + url, content, query, header );
+}
+
+Reply Module::get ( const std::string& url, nlohmann::json content, nlohmann::json query, Web::Header header )
+{
+    return m_pParent->get ( m_prefix + "/" + url, content, query, header );
+}
+
 }

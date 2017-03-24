@@ -16,6 +16,9 @@ protected:
     virtual Reply post ( const std::string& url, std::string content, Web::Header header = Web::Header () );
     virtual Reply get ( const std::string& url, std::string content, Web::Header header = Web::Header () );
     virtual Reply get ( const std::string& url, Web::Header header = Web::Header () );
+
+    virtual Reply post ( const std::string& url, nlohmann::json content = {}, nlohmann::json query = {}, Web::Header header = Web::Header () );
+    virtual Reply get ( const std::string& url, nlohmann::json content = {}, nlohmann::json query = {}, Web::Header header = Web::Header () );
     //virtual std::string getToken ();
     //virtual void setToken ( std::string token );
 };

@@ -23,6 +23,7 @@ public:
     //
     virtual void ConsoleListener (std::string userId, std::function<void(std::string)> callback) = 0;
     virtual void RoomListener (std::string room, std::function<void(std::string)> callback) = 0;
+    virtual void RoomListener (std::string room) = 0;
     virtual void WorldListener (std::function<void(std::string)> callback) = 0;
     virtual void UserListener (std::string userId, std::function<void(std::string)> callback) = 0;
 public:

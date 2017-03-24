@@ -61,8 +61,7 @@ Reply Client::post ( const std::string& url, std::string content, Web::Header he
 Reply Client::get ( const std::string& url, std::string content, Web::Header header )
 {
     std::string uri = "/" + url;
-    std::string query = "";
-    m_response = m_pClient->request(Web::RoutingMethod::HttpGet, uri, content,header);
+    m_response = m_pClient->request(Web::RoutingMethod::HttpGet, uri, content ,header);
     Reply ret = encapsulate ( m_response );
     return ret;
 }
@@ -73,6 +72,42 @@ Reply Client::get ( const std::string& url, Web::Header header )
     m_response = m_pClient->request(Web::RoutingMethod::HttpGet, uri, "",header);
     Reply ret = encapsulate ( m_response );
     return ret;
+}
+
+Reply Client::post ( const std::string& url, nlohmann::json content, nlohmann::json query, Web::Header header )
+{
+    std::string queryString = "";
+    if ( ! query.is_null () )
+    {
+        for (nlohmann::json::iterator it = query.begin(); it != query.end(); ++it)
+        {
+            std::ostringstream stream; stream << it.value ();
+            std::string value = stream.str ();
+            if ( value[0] == '"') value = value.substr(1,value.length () - 2 );
+            std::string str = it.key () + "=" + value + "";
+            if ( queryString == "" ) queryString = queryString + "?" + str;
+            else queryString = queryString + "&" + str;
+        }
+    }
+    return post ( url+queryString, content.dump (), header );
+}
+
+Reply Client::get ( const std::string& url, nlohmann::json content, nlohmann::json query, Web::Header header )
+{
+    std::string queryString = "";
+    if ( ! query.is_null () )
+    {
+        for (nlohmann::json::iterator it = query.begin(); it != query.end(); ++it)
+        {
+            std::ostringstream stream; stream << it.value ();
+            std::string value = stream.str ();
+            if ( value[0] == '"') value = value.substr(1,value.length () - 2 );
+            std::string str = it.key () + "=" + value + "";
+            if ( queryString == "" ) queryString = queryString + "?" + str;
+            else queryString = queryString + "&" + str;
+        }
+    }
+    return get ( url+queryString, content.dump (), header );
 }
 
 }
